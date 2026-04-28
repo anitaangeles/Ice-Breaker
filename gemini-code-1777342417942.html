@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Human Bingo: Selfie Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .bingo-card {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+        .square {
+            aspect-ratio: 1 / 1;
+            transition: transform 0.2s;
+        }
+        .square:hover {
+            transform: scale(1.02);
+        }
+        .preview-img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-sans p-4 md:p-10">
+
+    <header class="max-w-4xl mx-auto text-center mb-10">
+        <h1 class="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500 mb-4">
+            🤳 HUMAN BINGO
+        </h1>
+        <p class="text-gray-400 text-lg">Find a person, take a selfie, and stamp your card!</p>
+    </header>
+
+    <main class="max-w-4xl mx-auto">
+        <div class="bingo-card">
+            
+            <div class="square bg-gray-800 border-4 border-dashed border-gray-700 rounded-xl p-4 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                <span class="text-3xl mb-2">🕒</span>
+                <p class="font-bold text-sm md:text-base">Always on Time</p>
+                <input type="file" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" onchange="preview(this)">
+                <img class="preview-img absolute inset-0">
+            </div>
+
+            <div class="square bg-gray-800 border-4 border-dashed border-gray-700 rounded-xl p-4 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                <span class="text-3xl mb-2">🐾</span>
+                <p class="font-bold text-sm md:text-base">Has a Pet</p>
+                <input type="file" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" onchange="preview(this)">
+                <img class="preview-img absolute inset-0">
+            </div>
+
+            <div class="square bg-gray-800 border-4 border-dashed border-gray-700 rounded-xl p-4 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                <span class="text-3xl mb-2">🎸</span>
+                <p class="font-bold text-sm md:text-base">Plays Musical Instruments</p>
+                <input type="file" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" onchange="preview(this)">
+                <img class="preview-img absolute inset-0">
+            </div>
+
+            <div class="square bg-gray-800 border-4 border-dashed border-gray-700 rounded-xl p-4 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                <span class="text-3xl mb-2">🍜</span>
+                <p class="font-bold text-sm md:text-base">Loves Chinese Food</p>
+                <input type="file" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" onchange="preview(this)">
+                <img class="preview-img absolute inset-0">
+            </div>
+
+            <div class="square bg-gray-800 border-4 border-dashed border-gray-700 rounded-xl p-4 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                <span class="text-3xl mb-2">🧪</span>
+                <p class="font-bold text-sm md:text-base">Never had PTC yet</p>
+                <input type="file" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" onchange="preview(this)">
+                <img class="preview-img absolute inset-0">
+            </div>
+
+            <div class="square bg-gray-800 border-4 border-dashed border-gray-700 rounded-xl p-4 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                <span class="text-3xl mb-2">✈️</span>
+                <p class="font-bold text-sm md:text-base">Travelled to 3+ Countries</p>
+                <input type="file" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" onchange="preview(this)">
+                <img class="preview-img absolute inset-0">
+            </div>
+
+        </div>
+
+        <div class="mt-12 bg-gray-800 p-6 rounded-2xl border border-gray-700">
+            <h2 class="text-xl font-bold mb-4 flex items-center">
+                <svg class="w-6 h-6 mr-2 text-green-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                How to Play
+            </h2>
+            <ol class="list-decimal list-inside space-y-2 text-gray-300">
+                <li>Talk to people and find matches for the grid above.</li>
+                <li>Tap a square to **take a selfie** with them.</li>
+                <li>Once your photo appears, the square is "stamped."</li>
+                <li>Get all 6 to win!</li>
+            </ol>
+        </div>
+    </main>
+
+    <script>
+        function preview(input) {
+            const file = input.files[0];
+            const reader = new FileReader();
+            const imgElement = input.nextElementSibling;
+
+            reader.onload = function(e) {
+                imgElement.src = e.target.result;
+                imgElement.style.display = 'block';
+                input.parentElement.style.borderColor = '#10B981'; // Green border on success
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+</body>
+</html>
